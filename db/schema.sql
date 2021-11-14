@@ -8,11 +8,11 @@ CREATE TABLE User(
   id INTEGER AUTO_INCREMENT PRIMARY KEY,
   user_name VARCHAR(30),
   password VARCHAR(30)
-)
+);
 
-CREATE Posts(
+CREATE TABLE Posts(
   id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  title  VARCHAR(50),
-  constent VARCHAR(300),
+  title VARCHAR(50),
+  constent VARCHAR(300)
    
-)
+);
