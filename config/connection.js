@@ -1,8 +1,9 @@
 const Sequelize = require('sequelize');
 
+
 require('dotenv').config();
 
-// create connection to our db
+// creates server connection to our database -- .env replaces user and password to hide info. Listed on .env file
 const sequelize = process.env.JAWSDB_URL
   ? new Sequelize(process.env.JAWSDB_URL)
   : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
