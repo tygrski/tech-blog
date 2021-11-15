@@ -1,9 +1,14 @@
 const path = require('path');
+// require express library
 const express = require('express');
+// require expr-handlebars libraty
 const exphbs = require('express-handlebars');
+// require expr-session library
 const session = require('express-session');
-
+// set up actual server, creating app
 const app = express();
+
+// makes server run by passing in port number
 const PORT = process.env.PORT || 3001;
 
 const sequelize = require('./config/connection');
