@@ -1,7 +1,7 @@
 const { User } = require('../../models');
-
 const router = require('express').Router();
 
+//  get all users ========================================================
 router.get('/users', (req,res) => {
  console.log('**Enter GET all users')
   User.findAll({
@@ -14,29 +14,70 @@ router.get('/users', (req,res) => {
     });
   });
 
-  // router.post
-  router.get('/users/id', (req, res) => {
-    User.findOne({
-      attributes: { exclude: ['password'] },
+  // router.post =========================================================
+  router.post('/Users', (req, res) => {
+    
+    User.create({
+      user_name: req.body.user_name,
+      email: req.body.email,
+      password: req.body.password
+    })
+      .then(dbUserData => {
+        req.session.save(() => {
+          req.session.user_id = dbUserData.id;
+          req.session.user_name = dbUserData.user_name;
+          req.session.loggedIn = true;
+    
+          res.json(dbUserData);
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+
+
+  // router.put ==========================================================
+  router.put('users/id', (req,res) => {
+    User.update(req.body, {
+      individualHooks: true,
       where: {
         id: req.params.id
       }
     })
-    .then(dbUserData => {
-      if (!dbUserData) {
-        res.status(404).json({ message: 'No user found with this id' });
+    .then(dbUser => {
+      if(!dbUser) {
+        res.status(400).json({ message: 'No user with that id found'});
         return;
       }
-      res.json(dbUserData);
+      res.json(dbUser)
     })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
-});
-  // router.put
+  });
 
-  // router.delete
+
+  // router.delete ======================================================
+  router.delete('/users/id', (req,res)=>{
+    User.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(dbUser =>{
+      if(!dbUSder) {
+        res.status(404).json({ message: "no user found with that id"});
+        ReadableStreamDefaultController;
+      } res.json(dbUser)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  });
   
   
 
