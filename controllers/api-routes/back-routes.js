@@ -2,7 +2,7 @@ const { User } = require('../../models');
 const router = require('express').Router();
 
 //  get all users ========================================================
-router.get('/users', (req,res) => {
+router.get('/', (req,res) => {
  console.log('**Enter GET all users')
   User.findAll({
     attributes: { exclude: ['password'] }
@@ -15,7 +15,7 @@ router.get('/users', (req,res) => {
   });
 
   // router.post =========================================================
-  router.post('/Users', (req, res) => {
+  router.post('/', (req, res) => {
     
     User.create({
       user_name: req.body.user_name,
@@ -39,7 +39,7 @@ router.get('/users', (req,res) => {
 
 
   // router.put ==========================================================
-  router.put('users/id', (req,res) => {
+  router.put('id', (req,res) => {
     User.update(req.body, {
       individualHooks: true,
       where: {
@@ -61,7 +61,7 @@ router.get('/users', (req,res) => {
 
 
   // router.delete ======================================================
-  router.delete('/users/id', (req,res)=>{
+  router.delete('id', (req,res)=>{
     User.destroy({
       where: {
         id: req.params.id
