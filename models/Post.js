@@ -3,12 +3,13 @@ const sequelize = require('../config/connection');
 
 // create our Post model
 class Post extends Model {
-  static upvote(body, models) {
-    return models.Vote.create({
+  static makePost(body, models) {
+
+  Posts.init({
       user_id: body.user_id,
       post_id: body.post_id
     }).then(() => {
-      return Post.findOne({
+      return Posts.findOne({
         where: {
           id: body.post_id
         },
@@ -30,7 +31,8 @@ class Post extends Model {
       });
     });
   }
-}
+  }
+  
 
 // create fields/columns for Post model
 Post.init(
@@ -52,7 +54,7 @@ Post.init(
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
+        model: 'User',
         key: 'id'
       }
     }
@@ -61,7 +63,7 @@ Post.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: 'post'
+    modelName: 'Post'
   }
 );
 

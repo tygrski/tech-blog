@@ -16,5 +16,5 @@ const postInfo = [
   }
 ];
 
-const seedPosts = () => Posts.bulkcreate(postInfo)
-module.export = seedPosts;
+exports.seedPosts = () => Posts.bulkCreate(postInfo, {individualHooks: true} );
+// module.export = seedPosts;

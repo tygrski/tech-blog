@@ -38,7 +38,7 @@ app.use(express.urlencoded({ extended: false }));
 // for static files you dont want to change, css, html, img etc.
 // app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('./controllers/api-routes/back-routes'));
+app.use(require('./controllers/api-routes/user-routes'));
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
