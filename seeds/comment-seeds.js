@@ -3,13 +3,20 @@ const { Comments } = require('../models');
 
 const commentdata = [
   {
-    content: '111111111'
+    comment_content: '111111111',
+    user_id: "1",
+    post_id: "1"
+
   },
   {
-    content: '222222'
+    comment_content: '222222',
+    user_id: "2",
+    post_id: "2"
   },
   {
-    content: '33333333'
+    comment_content: '33333333',
+    user_id: "3",
+    post_id: "3"
   }
 ];
 // exports.seedComments = () => Comments.bulkCreate(commentdata);
