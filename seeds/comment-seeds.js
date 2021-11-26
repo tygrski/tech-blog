@@ -12,6 +12,6 @@ const commentdata = [
     content: '33333333'
   }
 ];
-exports.seedComments = () => Comments.bulkCreate(commentdata);
-
+// exports.seedComments = () => Comments.bulkCreate(commentdata);
+exports.seedComments = () => Comments.bulkCreate(commentdata, {individualHooks: true} );
 // module.exports = seedComments;
